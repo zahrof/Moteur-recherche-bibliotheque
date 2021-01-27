@@ -23,6 +23,7 @@ public class BookSearchEngineApp {
     @Bean
     public CommandLineRunner demo(BookRepository repository) {
         return (args) -> {
+
             Book b1 = new Book("IBSN1", "title1", "text1");
             Book b2 = new Book("IBSN2", "title2", "text2");
             Book b3 = new Book("IBSN1", "title3", "text3");
