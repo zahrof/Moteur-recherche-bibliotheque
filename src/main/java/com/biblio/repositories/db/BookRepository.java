@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BookRepository extends CrudRepository<Book, String>, BookRepositoryCustom<Book, String> {
+public interface BookRepository extends CrudRepository<Book, String>{
 
 }
