@@ -21,9 +21,10 @@ public class BSEController {
     @Autowired
     private HttpServletRequest request;
 
+    //@RequestMapping(value = "/query")
     @GetMapping(value = "/searchByKeyword", produces = {"application/json"})
     public List<Book> searchByKeyword(@RequestParam String keyword){
-        System.out.println("----- QUERY ----- " + keyword + " -----");
+        System.out.println("----- QUERY ----- "+ keyword );
 
         List<Book> result = new ArrayList<>();
         for(Book b : repository.findAll())
@@ -31,6 +32,7 @@ public class BSEController {
                 result.add(b);
         return result;
     }
+
 
 
 }

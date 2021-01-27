@@ -25,8 +25,8 @@ public class BookSearchEngineApp {
         return (args) -> {
 
             Book b1 = new Book("IBSN1", "title1", "text1");
-            Book b2 = new Book("IBSN2", "title2", "text2");
-            Book b3 = new Book("IBSN1", "title3", "text3");
+            Book b2 = new Book("IBSN2", "title2", "La petite fille de la ferme préfère chanter");
+            Book b3 = new Book("IBSN1", "title3", "Un chien aime pas porter de collier");
 
             repository.save(b1); repository.save(b2); repository.save(b3);
             for(Book book : repository.findAll())
