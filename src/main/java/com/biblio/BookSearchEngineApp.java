@@ -24,14 +24,53 @@ public class BookSearchEngineApp {
     public CommandLineRunner demo(BookRepository repository) {
         return (args) -> {
 
-            Book b1 = new Book("IBSN1", "title1", "text1");
-            Book b2 = new Book("IBSN2", "title2", "La petite fille de la ferme préfère chanter");
-            Book b3 = new Book("IBSN1", "title3", "Un chien aime pas porter de collier");
+            ArrayList<String> page1 = new ArrayList<>();
+            page1.add("Je pense qu'il vaut mieux vous dire la vérité docteur");
+            page1.add("Les enfants savent se montrer très philosophes");
+
+            ArrayList<String> page2 = new ArrayList<>();
+            page2.add("ça fait donc trois premières en cinq minutes ");
+            page2.add("Non, Wendy. ça ne pouvait pas être un accident.");
+
+            ArrayList<String> page3 = new ArrayList<>();
+            page3.add("Alors la femme se mit sur son séant");
+            page3.add("Il ouvrit les yeux et s'essuya la bouche avec son mouchoir");
+
+            ArrayList<String> page4 = new ArrayList<>();
+            page4.add("Alors la femme se mit sur son séant");
+            page4.add("C'est une excellent idée");
+
+            ArrayList<String> page5 = new ArrayList<>();
+            page5.add("A deux heures et demie");
+            page5.add("Le jour tombait");
+
+            ArrayList<String> page6 = new ArrayList<>();
+            page6.add("Elle sourit");
+            page6.add("Il ferma les yeux, serra les poings et se concentra si fort que ses épaules se contractèrent");
+
+            ArrayList<ArrayList<String>> livre1 = new ArrayList<>();
+            livre1.add(page1);
+            livre1.add(page2);
+
+            ArrayList<ArrayList<String>> livre2 = new ArrayList<>();
+            livre2.add(page3);
+            livre2.add(page4);
+
+            ArrayList<ArrayList<String>> livre3 = new ArrayList<>();
+            livre3.add(page5);
+            livre3.add(page6);
+
+
+
+            Book b1 = new Book("IBSN1", "title1", "text1",livre1);
+            Book b2 = new Book("IBSN2", "title2", "La petite fille de la ferme préfère chanter",livre2);
+            Book b3 = new Book("IBSN1", "title3", "Un chien aime pas porter de collier",livre3);
 
             repository.save(b1); repository.save(b2); repository.save(b3);
             for(Book book : repository.findAll())
                 System.out.println(book);
             System.out.println("----END----");
+
         };
     }
 
