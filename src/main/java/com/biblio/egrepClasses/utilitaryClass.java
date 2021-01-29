@@ -32,7 +32,7 @@ public class utilitaryClass {
         return false;
     }
 
-    public static boolean regExIsPresent(RegEx re, ShortBook b) {
+    public static MinimalizedAutomaton convertRegExToMinAutomaton(RegEx re){
         RegExTree ret = null;
         try {
             ret = re.parse();
@@ -45,8 +45,10 @@ public class utilitaryClass {
         s.put(-1, new EAutomaton(new HashMap<>(), true));
         s.initialize(ret);
         EAutomaton ndfa = s.determine(s);
-        MinimalizedAutomaton ms = MinimalizedAutomaton.minimize(ndfa);
+        return  MinimalizedAutomaton.minimize(ndfa);
+    }
 
+    public static boolean regExIsPresent(ShortBook b, MinimalizedAutomaton ms) {
         return egrep(b,ms);
     }
 }

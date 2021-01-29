@@ -34,7 +34,10 @@ public class EAutomaton extends Automaton {
 
     public static EAutomaton absorb(EAutomaton a){
         ArrayList<EAutomaton> eps = a.sons.getOrDefault(-1, null);
-        if(eps == null) return a;
+        if(eps == null){
+            int x = 5;
+            return a;
+        }
         a.sons.remove(-1);
         for(EAutomaton e : eps){
             if(e.terminal) a.terminal = true;

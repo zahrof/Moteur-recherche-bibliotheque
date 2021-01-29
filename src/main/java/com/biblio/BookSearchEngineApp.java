@@ -22,10 +22,11 @@ public class BookSearchEngineApp {
 
     @Bean
     public CommandLineRunner demo(BookRepository repository) {
-        return (args) -> {
 
+        return (args) -> {
+            repository.deleteAll();
             ArrayList<String> page1 = new ArrayList<>();
-            page1.add("Je pense qu'il vaut mieux vous dire la vérité docteur");
+            page1.add("Je pense qu'il vaut mieux vous dire la vérité docteur. Sargon");
             page1.add("Les enfants savent se montrer très philosophes");
 
             ArrayList<String> page2 = new ArrayList<>();
@@ -34,14 +35,14 @@ public class BookSearchEngineApp {
 
             ArrayList<String> page3 = new ArrayList<>();
             page3.add("Alors la femme se mit sur son séant");
-            page3.add("Il ouvrit les yeux et s'essuya la bouche avec son mouchoir");
+            page3.add("Il ouvrit les yeux et s'essuya la bouche avec son mouchoir.");
 
             ArrayList<String> page4 = new ArrayList<>();
             page4.add("Alors la femme se mit sur son séant");
             page4.add("C'est une excellent idée");
 
             ArrayList<String> page5 = new ArrayList<>();
-            page5.add("A deux heures et demie");
+            page5.add("A deux heures et demie.Sargon");
             page5.add("Le jour tombait");
 
             ArrayList<String> page6 = new ArrayList<>();
@@ -64,7 +65,7 @@ public class BookSearchEngineApp {
 
             Book b1 = new Book("IBSN1", "title1", "text1",livre1);
             Book b2 = new Book("IBSN2", "title2", "La petite fille de la ferme préfère chanter",livre2);
-            Book b3 = new Book("IBSN1", "title3", "Un chien aime pas porter de collier",livre3);
+            Book b3 = new Book("IBSN3", "title3", "Un chien aime pas porter de collier",livre3);
 
             repository.save(b1); repository.save(b2); repository.save(b3);
             for(Book book : repository.findAll())

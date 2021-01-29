@@ -1,6 +1,7 @@
 package com.biblio.controller;
 
 import com.biblio.algorithms.KMP;
+import com.biblio.egrepClasses.MinimalizedAutomaton;
 import com.biblio.egrepClasses.RegEx;
 import com.biblio.egrepClasses.ShortBook;
 import com.biblio.models.Book;
@@ -43,14 +44,18 @@ public class BSEController {
         RegEx re = new RegEx();
         re.regEx = regEx;
 
-        // retrieving from elasticsearch each book and checking if the reg ex is present
+       // retrieving from elasticsearch each book and checking if the reg ex is present
         List<Book> result = new ArrayList<>();
+
+        MinimalizedAutomaton ms = new MinimalizedAutomaton(re);
         for(Book b : repository.findAll()) {
-            ShortBook sb = new ShortBook(b.getBook());
-            if (regExIsPresent(re, sb)) {
+            ShortBook sb = new ShortBook(b.getContent());
+            if (regExIsPresent(sb,ms.clone())) {
                 System.out.println("Is present");
                 result.add(b);
             }
+
+
         }
 
         return result;

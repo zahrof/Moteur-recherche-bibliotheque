@@ -18,9 +18,10 @@ public class Book {
 
     public final String title;
 
+    // TO DO
     public final String text;
 
-    public final ArrayList<ArrayList<String>> book;
+    public final ArrayList<ArrayList<String>> content;
 
     public String toString(){
         return title + " [" + ibsn + "]";

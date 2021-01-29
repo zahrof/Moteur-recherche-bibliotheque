@@ -12,4 +12,9 @@ public class Automaton {
     public Automaton(int id) {
         this.id = id;
     }
+
+    public Automaton() {
+        this.id=0;
+        this.terminal=false;
+    }
 }

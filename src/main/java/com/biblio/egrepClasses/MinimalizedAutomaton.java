@@ -18,6 +18,28 @@ public class MinimalizedAutomaton extends Automaton {
        super(id,terminal);
     }
 
+    public MinimalizedAutomaton(RegEx re) {
+        super();
+
+        RegExTree ret = null;
+        try {
+            ret = re.parse();
+        } catch (Exception e) {
+            System.err.println("  >> ERROR: syntax error for" +
+                    " regEx \""+re.regEx+"\".");
+        }
+        EAutomaton s = new EAutomaton(new HashMap<>(),false);
+        // add final state with epsilon
+        s.put(-1, new EAutomaton(new HashMap<>(), true));
+        s.initialize(ret);
+        EAutomaton ndfa = s.determine(s);
+        MinimalizedAutomaton ma = this.minimize(ndfa);
+        this.father=ma.father;
+        this.sons=ma.sons;
+        this.terminal = ma.terminal;
+        this.id = ma.id;
+    }
+
     public boolean equals(Object o) {
         if (o == this) return true;
         if (!(o instanceof MinimalizedAutomaton)) return false;
