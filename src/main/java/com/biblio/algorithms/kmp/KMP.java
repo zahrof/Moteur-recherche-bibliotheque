@@ -39,10 +39,8 @@ public class KMP {
                 j++;
                 i++;
             }
-            if (j == keywordLength ){
-                System.out.println("Le mot commence à l'indice " + ( i - j));
-                return true;
-            }
+            if (j == keywordLength )return true;
+
             else if ( i < textLenght && keyword.charAt(j) != text.charAt(i)) {
                 if (j != 0) j = carryover[j - 1];
                 else i = i+1;
