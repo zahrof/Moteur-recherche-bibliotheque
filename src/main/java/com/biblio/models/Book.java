@@ -1,5 +1,6 @@
 package com.biblio.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -18,9 +19,10 @@ public class Book {
 
     public final String title;
 
-    // TO DO
+    @JsonIgnore
     public final String text;
 
+    @JsonIgnore
     public final ArrayList<ArrayList<String>> content;
 
     public String toString(){

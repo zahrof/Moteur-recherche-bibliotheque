@@ -1,5 +1,6 @@
 package com.biblio;
 
+import com.biblio.egrepClasses.ShortBook;
 import com.biblio.models.Book;
 import com.biblio.repositories.db.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class BookSearchEngineApp {
@@ -25,7 +27,7 @@ public class BookSearchEngineApp {
 
         return (args) -> {
             repository.deleteAll();
-            ArrayList<String> page1 = new ArrayList<>();
+           /* ArrayList<String> page1 = new ArrayList<>();
             page1.add("Je pense qu'il vaut mieux vous dire la vérité docteur. Sargon");
             page1.add("Les enfants savent se montrer très philosophes");
 
@@ -67,9 +69,12 @@ public class BookSearchEngineApp {
             Book b2 = new Book("IBSN2", "title2", "La petite fille de la ferme préfère chanter",livre2);
             Book b3 = new Book("IBSN3", "title3", "Un chien aime pas porter de collier",livre3);
 
-            repository.save(b1); repository.save(b2); repository.save(b3);
-            for(Book book : repository.findAll())
-                System.out.println(book);
+            repository.save(b1); repository.save(b2); repository.save(b3);*/
+            ShortBook sb = new ShortBook("src/main/booksToTest/Babylone.txt");
+            for (int i=0; i <200; i++)
+                repository.save(new Book(Integer.toString(i), "", "", sb.book));
+
+                System.out.println("counter "+ repository.count());
             System.out.println("----END----");
 
         };

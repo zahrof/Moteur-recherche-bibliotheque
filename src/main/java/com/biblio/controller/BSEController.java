@@ -48,16 +48,15 @@ public class BSEController {
         List<Book> result = new ArrayList<>();
 
         MinimalizedAutomaton ms = new MinimalizedAutomaton(re);
+        System.out.println("before find");
         for(Book b : repository.findAll()) {
+            System.out.println("i'm here");
             ShortBook sb = new ShortBook(b.getContent());
-            if (regExIsPresent(sb,ms.clone())) {
+            if (regExIsPresent(sb,ms.clone())) result.add(b);
 
-                System.out.println("Is present");
-                result.add(b);
-            }
         }
-
-
+        System.out.println("counter : "+ repository.count());
+        System.out.println("result : "+ result.size());
 
         return result;
     }

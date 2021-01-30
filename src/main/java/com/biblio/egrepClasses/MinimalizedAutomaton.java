@@ -51,7 +51,6 @@ public class MinimalizedAutomaton extends Automaton {
         if(ms==null) return this;
         if(ms.terminal!=this.terminal) return null;
         for (Integer i:this.sons.keySet()) {
-            //System.out.println("MERGING");
             if(!ms.sons.containsKey(i)) return null;
             if(this.sons.get(i).equals(this)&&
                     ms.sons.get(i).equals(ms)) continue;
@@ -118,16 +117,10 @@ public class MinimalizedAutomaton extends Automaton {
         ArrayList<MinimalizedAutomaton> automate = fromEAutomata(a);
         int sizeAutomata = automate.size();
         int i=0;
-        System.out.println("I'm here");
         while(i<sizeAutomata){
             int j=1;
-            System.out.println("Je suis là");
             MinimalizedAutomaton ms;
             while(j<sizeAutomata){
-
-                if(i==1 && j==2){
-                    System.out.println("i: "+ i + " j: "+ j);
-                }
                 ms=automate.get(i).merge(automate.get(j), automate);
                 if((ms!=null) && (i!=j)){
                     automate.add(ms); // CAREFULL Risque d'erreur
@@ -145,7 +138,6 @@ public class MinimalizedAutomaton extends Automaton {
                 j++;
             }i++;
         }
-        System.out.println("Je suis là maintenant");
         MinimalizedAutomaton min = null;
         for (MinimalizedAutomaton ms: automate) {
             if(ms.id==0){
