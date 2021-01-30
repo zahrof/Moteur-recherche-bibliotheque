@@ -1,4 +1,4 @@
-package com.biblio.egrepClasses;
+package com.biblio.algorithms.egrep;
 
 public class Automaton {
     public int id;

@@ -1,4 +1,4 @@
-package com.biblio.egrepClasses;
+package com.biblio.algorithms.egrep;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,8 +12,10 @@ public class ShortBook {
     }
 
     public ArrayList<ArrayList<String>> book;
+    public String title;
 
     public ShortBook(String fileName){
+        this.title = fileName;
         BufferedReader reader;
         book = new ArrayList<>();
         book.add(new ArrayList<>());

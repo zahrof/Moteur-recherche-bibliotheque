@@ -1,4 +1,4 @@
-package com.biblio.egrepClasses;
+package com.biblio.algorithms.egrep;
 
 public class Position {
     public int page, line, col;
@@ -26,7 +26,7 @@ public class Position {
         if (start.col < book.getLine(start.page, start.line).length() - 1)
             return move(book, new Position(start.page, start.line,
                             start.col + 1), gap - 1);
-        else if (start.line < book.getSize(start.page) - 1)
+        else if (start.line < book.getSize(start.page) -1)
             return move (book, new Position(start.page,
                     start.line + 1, 0), gap - 1);
         else if (start.page < book.getSize() - 1)

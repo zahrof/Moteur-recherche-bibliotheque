@@ -1,4 +1,4 @@
-package com.biblio.egrepClasses;
+package com.biblio.algorithms.egrep;
 
 import java.util.ArrayList;
 

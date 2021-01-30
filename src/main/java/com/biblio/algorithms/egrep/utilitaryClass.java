@@ -1,12 +1,9 @@
-package com.biblio.egrepClasses;
-
-import com.biblio.egrepClasses.RegEx;
-
-import java.util.HashMap;
+package com.biblio.algorithms.egrep;
 
 public class utilitaryClass {
 
     private static Position app(ShortBook b, Position cursor, MinimalizedAutomaton a) {
+        if(cursor==null) return null;
         int i = b.getCharacter(cursor.page, cursor.line, cursor.col);
         MinimalizedAutomaton son = a.sons.getOrDefault(i, null);
         if(son!=null){

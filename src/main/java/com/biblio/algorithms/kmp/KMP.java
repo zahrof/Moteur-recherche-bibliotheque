@@ -1,13 +1,28 @@
-package com.biblio.algorithms;
+package com.biblio.algorithms.kmp;
 
 import com.biblio.models.Book;
+
+import java.util.ArrayList;
 
 public class KMP {
 
     // renvoi vrai si keyword est présent dans book
     public static boolean kmp(Book book, String keyword){
-        String text = book.text;
-        boolean present = false;
+        for (int var0 = 0; var0 < book.content.size(); var0++) {
+            for( String line : book.content.get(var0)){
+               /* String[] word = line.split(" ");
+                for (String var1: word) {
+                    if(isWord(var1))
+                }*/
+                if(keyWordIsPresent(line,keyword)) return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static boolean keyWordIsPresent(String text, String keyword) {
+
         // m désigne la position dans le text text à laquelle
         // la chaîne keyword est en cours de verif
         int keywordLength = keyword.length();
@@ -26,8 +41,7 @@ public class KMP {
             }
             if (j == keywordLength ){
                 System.out.println("Le mot commence à l'indice " + ( i - j));
-                present = true;
-                j = carryover[j - 1];
+                return true;
             }
             else if ( i < textLenght && keyword.charAt(j) != text.charAt(i)) {
                 if (j != 0) j = carryover[j - 1];
@@ -35,8 +49,7 @@ public class KMP {
 
             }
         }
-
-        return present;
+        return false;
     }
 
     private static void findCarryOver(String keyword, int keyWordLength, int[] carryOver) {

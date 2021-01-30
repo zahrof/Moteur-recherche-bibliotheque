@@ -1,9 +1,9 @@
 package com.biblio.controller;
 
-import com.biblio.algorithms.KMP;
-import com.biblio.egrepClasses.MinimalizedAutomaton;
-import com.biblio.egrepClasses.RegEx;
-import com.biblio.egrepClasses.ShortBook;
+import com.biblio.algorithms.kmp.KMP;
+import com.biblio.algorithms.egrep.MinimalizedAutomaton;
+import com.biblio.algorithms.egrep.RegEx;
+import com.biblio.algorithms.egrep.ShortBook;
 import com.biblio.models.Book;
 import com.biblio.repositories.db.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.biblio.egrepClasses.utilitaryClass.regExIsPresent;
+import static com.biblio.algorithms.egrep.utilitaryClass.regExIsPresent;
 
 
 @RestController
@@ -48,11 +48,12 @@ public class BSEController {
         List<Book> result = new ArrayList<>();
 
         MinimalizedAutomaton ms = new MinimalizedAutomaton(re);
-        System.out.println("before find");
         for(Book b : repository.findAll()) {
-            System.out.println("i'm here");
             ShortBook sb = new ShortBook(b.getContent());
-            if (regExIsPresent(sb,ms.clone())) result.add(b);
+            if (regExIsPresent(sb,ms.clone())){
+                result.add(b);
+
+            }
 
         }
         System.out.println("counter : "+ repository.count());

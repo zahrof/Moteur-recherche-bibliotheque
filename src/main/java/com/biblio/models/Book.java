@@ -20,9 +20,6 @@ public class Book {
     public final String title;
 
     @JsonIgnore
-    public final String text;
-
-    @JsonIgnore
     public final ArrayList<ArrayList<String>> content;
 
     public String toString(){
