@@ -2,7 +2,7 @@ package com.biblio.egrepClasses;
 
 public class Automaton {
     public int id;
-    public boolean terminal=false;
+    public boolean terminal;
 
     public Automaton(int id, boolean terminal) {
         this.id = id;

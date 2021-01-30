@@ -20,35 +20,19 @@ public class utilitaryClass {
             return null;
     }
 
-    private static boolean egrep(ShortBook b, MinimalizedAutomaton ms){
+    public static boolean regExIsPresent(ShortBook b, MinimalizedAutomaton ms){
         Position cursor = new Position();
         Position end;
         while(cursor!=null){
             end = app(b, cursor, ms);
-            if(end!=null)return true;
+            if(end!=null){
+                return true;
+            }
 
             cursor = Position.move (b,cursor,1);
         }
         return false;
     }
 
-    public static MinimalizedAutomaton convertRegExToMinAutomaton(RegEx re){
-        RegExTree ret = null;
-        try {
-            ret = re.parse();
-        } catch (Exception e) {
-            System.err.println("  >> ERROR: syntax error for" +
-                    " regEx \""+re.regEx+"\".");
-        }
-        EAutomaton s = new EAutomaton(new HashMap<>(),false);
-        // add final state with epsilon
-        s.put(-1, new EAutomaton(new HashMap<>(), true));
-        s.initialize(ret);
-        EAutomaton ndfa = s.determine(s);
-        return  MinimalizedAutomaton.minimize(ndfa);
-    }
 
-    public static boolean regExIsPresent(ShortBook b, MinimalizedAutomaton ms) {
-        return egrep(b,ms);
-    }
 }

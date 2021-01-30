@@ -18,7 +18,9 @@ public class RegEx {
 
 
     //CONSTRUCTOR
-    public RegEx(){}
+    public RegEx(){
+        EAutomaton.counter=0;
+    }
 
 
     //FROM REGEX TO SYNTAX TREE

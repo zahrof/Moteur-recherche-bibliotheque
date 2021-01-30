@@ -51,12 +51,13 @@ public class BSEController {
         for(Book b : repository.findAll()) {
             ShortBook sb = new ShortBook(b.getContent());
             if (regExIsPresent(sb,ms.clone())) {
+
                 System.out.println("Is present");
                 result.add(b);
             }
-
-
         }
+
+
 
         return result;
     }
