@@ -1,6 +1,7 @@
 package com.biblio;
 
 import com.biblio.algorithms.egrep.ShortBook;
+import com.biblio.algorithms.jaccard.Jaccard;
 import com.biblio.models.Book;
 import com.biblio.repositories.db.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
 @SpringBootApplication
 public class BookSearchEngineApp {
@@ -26,7 +27,7 @@ public class BookSearchEngineApp {
     public CommandLineRunner demo(BookRepository repository) {
 
         return (args) -> {
-           //repository.deleteAll();
+            repository.deleteAll();
            /* ArrayList<String> page1 = new ArrayList<>();
             page1.add("Je pense qu'il vaut mieux vous dire la vérité docteur. Sargon");
             page1.add("Les enfants savent se montrer très philosophes");
@@ -70,10 +71,14 @@ public class BookSearchEngineApp {
             Book b3 = new Book("IBSN3", "title3", "Un chien aime pas porter de collier",livre3);
 
             repository.save(b1); repository.save(b2); repository.save(b3);*/
-          /*  for (int i=0; i <1666; i++)
-                repository.save(new Book(Integer.toString(i), "", "", (new ShortBook("books/"+i+".txt")).book));*/
-            System.out.println("counter "+ repository.count());
+            /*ShortBook sb = new ShortBook("src/main/booksToTest/Babylone.txt");
+            for (int i=0; i <200; i++)
+                repository.save(new Book(Integer.toString(i), "", sb.book));
+
+                System.out.println("counter "+ repository.count());*/
+            Jaccard.save(Jaccard.getMatrix("books/", 500));
             System.out.println("----END----");
+
         };
     }
 
