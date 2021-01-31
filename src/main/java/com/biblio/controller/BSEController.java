@@ -56,8 +56,6 @@ public class BSEController {
             }
 
         }
-        System.out.println("counter : "+ repository.count());
-        System.out.println("result : "+ result.size());
 
         return result;
     }
