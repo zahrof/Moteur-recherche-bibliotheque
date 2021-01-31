@@ -23,6 +23,6 @@ public class Book {
     public final ArrayList<ArrayList<String>> content;
 
     public String toString(){
-        return title + " [" + isbn + "]";
+        return title + " [" + Integer.toString(isbn) + "]";
     }
 }

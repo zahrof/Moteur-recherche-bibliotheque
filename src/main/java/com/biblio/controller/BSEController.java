@@ -1,9 +1,11 @@
 package com.biblio.controller;
 
+import com.biblio.algorithms.jaccard.Jaccard;
 import com.biblio.algorithms.kmp.KMP;
 import com.biblio.algorithms.egrep.MinimalizedAutomaton;
 import com.biblio.algorithms.egrep.RegEx;
 import com.biblio.algorithms.egrep.ShortBook;
+import com.biblio.algorithms.pagerank.PageRank;
 import com.biblio.models.Book;
 import com.biblio.repositories.db.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,10 @@ public class BSEController {
     @Autowired
     private HttpServletRequest request;
 
+    @Autowired
+    private static Double[][] matrix = null;
+
+
     //@RequestMapping(value = "/query")
     @GetMapping(value = "/searchByKeyword", produces = {"application/json"})
     public List<Book> searchByKeyword(@RequestParam String keyword){
@@ -34,7 +40,13 @@ public class BSEController {
         for(Book b : repository.findAll())
             if(KMP.kmp(b, keyword))
                 result.add(b);
-        return result;
+
+        System.out.println(result.size());
+        List<Book> sorted = PageRank.process(result, Jaccard.readMatrix());
+        System.out.println(sorted.size());
+        System.out.println("----- ANSWER ----- "+ keyword );
+
+        return sorted;
     }
 
     @GetMapping(value = "/searchByRegEx", produces = {"application/json"})
@@ -56,8 +68,12 @@ public class BSEController {
             }
 
         }
+        System.out.println(result.size());
+        List<Book> sorted = PageRank.process(result, matrix);
+        System.out.println(sorted.size());
+        System.out.println("----- ANSWER ----- "+ regEx );
 
-        return result;
+        return sorted;
     }
 
 

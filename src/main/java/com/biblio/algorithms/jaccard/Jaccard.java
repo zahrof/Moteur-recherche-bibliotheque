@@ -1,13 +1,29 @@
 package com.biblio.algorithms.jaccard;
 
+import lombok.Getter;
+
 import java.io.*;
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Getter
 public class Jaccard {
 
     private static final String SAVE_PATH = "books/matrix.txt";
+    private static final String BOOK_FOLDER_PATH = "books/";
+    private static final int HOW_MANY = 200;
+    private Double[][] jaccard = null;
+
+    public Jaccard(){
+        File file = new File(SAVE_PATH);
+        if (!file.exists())
+            jaccard = readMatrix();
+        else {
+            jaccard = getMatrix(BOOK_FOLDER_PATH, HOW_MANY);
+            save(jaccard);
+        }
+    }
 
     public static Map<String, Integer> frqOfWords(String filePath){
         Map<String, Integer> frq = new HashMap<>();
@@ -36,7 +52,7 @@ public class Jaccard {
         Double[][] matrix = (Double[][]) Array.newInstance(Double.class, n, n);
         for(int i = 0; i < n; i++) {
             for (int j = 0; j <= i; j++)
-                matrix[i][j] = jaccardDistance(fow.get(i), fow.get(j));
+                matrix[i][j] = matrix[j][i] = jaccardDistance(fow.get(i), fow.get(j));
         }
         return matrix;
     }
@@ -94,7 +110,7 @@ public class Jaccard {
             Double[][] matrix = (Double[][]) Array.newInstance(Double.class, _matrix.size(), _matrix.size());
             for(int i = 0; i < _matrix.size(); i++)
                 for(int j = 0; j <= i; j++)
-                    matrix[i][j] = _matrix.get(i).get(j);
+                    matrix[i][j] = matrix[j][i] =_matrix.get(i).get(j);
             return matrix;
         } catch (IOException e) {
             e.printStackTrace();
