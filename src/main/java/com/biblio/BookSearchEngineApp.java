@@ -31,13 +31,13 @@ public class BookSearchEngineApp {
     public CommandLineRunner demo(BookRepository repository) {
 
         return (args) -> {
-            //  repository.deleteAll();
+              repository.deleteAll();
             //for (int i=0; i <500; i++)
              //   repository.save(new Book(i, i+".txt",(new ShortBook("books/" + i + ".txt")).book ));
 
-            System.out.println("counter "+ repository.count());
-            //Jaccard.save(Jaccard.getMatrix("books/", 500));
-            PageRank.init();
+            //System.out.println("counter "+ repository.count());
+            Jaccard.save(Jaccard.getMatrix("books/", 1667));
+            //PageRank.init();
             System.out.println("---- READY ----");
 
         };

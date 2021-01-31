@@ -30,6 +30,6 @@ def biased_text(nbwords, llength, wlength):
     return " \n".join([biased_line(llength, wlength, order) for i in range(nbwords//(llength//wlength))])
 
 if __name__ == "__main__":
-    for i in range(500):
+    for i in range(1667):
         with open(str(i) + ".txt", "w") as f:
             f.write(biased_text(10000, 80, 5))
