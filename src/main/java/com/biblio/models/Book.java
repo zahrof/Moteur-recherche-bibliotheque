@@ -11,11 +11,11 @@ import java.util.ArrayList;
 
 @AllArgsConstructor
 @Getter
-@Document(indexName = "ibsn", type = "book")
+@Document(indexName = "isbn", type = "book")
 public class Book {
 
     @Id
-    public final String ibsn;
+    public final int isbn;
 
     public final String title;
 
@@ -23,6 +23,6 @@ public class Book {
     public final ArrayList<ArrayList<String>> content;
 
     public String toString(){
-        return title + " [" + ibsn + "]";
+        return title + " [" + isbn + "]";
     }
 }

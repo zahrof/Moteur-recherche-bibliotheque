@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BookRepository extends CrudRepository<Book, String>{
 
-    Book findByIbsn(String ibsn);
+    Book findByisbn(int isbn);
 }

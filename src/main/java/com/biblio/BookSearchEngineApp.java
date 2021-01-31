@@ -27,7 +27,7 @@ public class BookSearchEngineApp {
     public CommandLineRunner demo(BookRepository repository) {
 
         return (args) -> {
-            repository.deleteAll();
+          //  repository.deleteAll();
            /* ArrayList<String> page1 = new ArrayList<>();
             page1.add("Je pense qu'il vaut mieux vous dire la vérité docteur. Sargon");
             page1.add("Les enfants savent se montrer très philosophes");
@@ -66,16 +66,16 @@ public class BookSearchEngineApp {
 
 
 
-            Book b1 = new Book("IBSN1", "title1", "text1",livre1);
-            Book b2 = new Book("IBSN2", "title2", "La petite fille de la ferme préfère chanter",livre2);
-            Book b3 = new Book("IBSN3", "title3", "Un chien aime pas porter de collier",livre3);
+            Book b1 = new Book("isbn1", "title1", "text1",livre1);
+            Book b2 = new Book("isbn2", "title2", "La petite fille de la ferme préfère chanter",livre2);
+            Book b3 = new Book("isbn3", "title3", "Un chien aime pas porter de collier",livre3);
 
             repository.save(b1); repository.save(b2); repository.save(b3);*/
-            /*ShortBook sb = new ShortBook("src/main/booksToTest/Babylone.txt");
-            for (int i=0; i <200; i++)
-                repository.save(new Book(Integer.toString(i), "", sb.book));
+         /*   for (int i=0; i <200; i++)
+                repository.save(new Book(i, i+".txt",(new ShortBook("books/" + i + ".txt")).book ));*/
 
-                System.out.println("counter "+ repository.count());*/
+
+                System.out.println("counter "+ repository.count());
             Jaccard.save(Jaccard.getMatrix("books/", 500));
             System.out.println("----END----");
 

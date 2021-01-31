@@ -12,10 +12,8 @@ public class ShortBook {
     }
 
     public ArrayList<ArrayList<String>> book;
-    public String title;
 
     public ShortBook(String fileName){
-        this.title = fileName;
         BufferedReader reader;
         book = new ArrayList<>();
         book.add(new ArrayList<>());
